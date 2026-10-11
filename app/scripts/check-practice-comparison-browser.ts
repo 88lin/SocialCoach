@@ -34,6 +34,7 @@ function openFixture(lang:'zh'|'en',theme:'light'|'dark',records:Session[],id=cu
  evaluate(`localStorage.setItem('socialcoach.v1',${JSON.stringify(value)});true`);
  browser(['open',`${base}/practice/${id}`]);
  browser(['wait','--fn',"document.querySelector('#review-comparison')!==null"]);
+ browser(['wait','--fn',`document.documentElement.dataset.theme===${JSON.stringify(theme)}&&getComputedStyle(document.querySelector('#review-comparison').parentElement).opacity==='1'`]);
 }
 try{
  browser(['open','about:blank']);
@@ -60,6 +61,7 @@ try{
   browser(['wait','--fn',"!!document.querySelector('#review-comparison')"]);
   assert.equal(evaluate("document.querySelectorAll('#review-comparison article').length"),0,'old reports must not use a future practice');
   openFixture(lang,theme,[current,previous]);browser(['reload']);browser(['wait','--fn',"document.querySelectorAll('#review-comparison article').length===1"]);
+  browser(['wait','--fn',"getComputedStyle(document.querySelector('#review-comparison').parentElement).opacity==='1'"]);
   browser(['scrollintoview','#review-comparison']);browser(['screenshot',join(artifacts,`comparison-${lang}-${theme}-${width}.png`)]);
   const scan=browser(['a11y','--selector','#review-comparison','--tags','wcag2a,wcag2aa']);
   assert.equal(scan.counts.violations,0,JSON.stringify(scan.violations));
