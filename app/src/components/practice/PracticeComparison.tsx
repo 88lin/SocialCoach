@@ -36,7 +36,7 @@ export function PracticeComparison({session}:{session:Session}){
     <div className="grid gap-5 sm:grid-cols-2">{([{label:copy.previous,record:comparison.previous,rating:row.previous},{label:copy.current,record:session,rating:row.current}]).map(({label,record,rating})=><div key={record.id} className="min-w-0 flex flex-col gap-2">
      <p className="eyebrow text-ink-3">{pick(label,lang)} · <time dateTime={new Date(record.startedAt).toISOString()}>{new Date(record.startedAt).toLocaleDateString(lang==='zh'?'zh-CN':'en-US',{month:'short',day:'numeric'})}</time></p>
      <button type="button" onClick={()=>setSelection({session:record,quote:rating.evidence})} aria-label={`${pick(copy.source,lang)} · ${pick(label,lang)}`} className="press min-h-11 text-left rounded-xl bg-inset px-4 py-3 hover:bg-slab hover:text-slab-ink transition-colors">
-      <blockquote className="text-[15px] leading-relaxed whitespace-pre-wrap break-words">“{rating.evidence}”</blockquote>
+      <span className="block text-[15px] leading-relaxed whitespace-pre-wrap break-words">“{rating.evidence}”</span>
      </button>
      {rating.reason&&<p className="text-[13px] text-ink-2 leading-relaxed"><span className="text-ink-3">{pick(copy.assessment,lang)}</span>{rating.reason}</p>}
     </div>)}</div>
