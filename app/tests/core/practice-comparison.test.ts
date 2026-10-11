@@ -89,3 +89,12 @@ test('imported finite but unrenderable dates cannot crash the comparison view',a
  assert.equal(await compare(current,[{...old,startedAt:-1e20}]),null);
  assert.equal(await compare({...current,startedAt:1e20},[old]),null);
 });
+test('accepted padded quotations still locate the exact learner line without modifying the report',async()=>{
+ const old=practice('old',1,before),current=practice('current',2);
+ old.report!.ratings![0].evidence='  '+before+'\n';
+ current.report!.ratings![0].evidence='\n'+after+'  ';
+ const result=await compare(current,[old]);assert.ok(result);
+ assert.ok(old.messages[0].text.includes(result.rows[0].previous.evidence));
+ assert.ok(current.messages[0].text.includes(result.rows[0].current.evidence));
+ assert.equal(old.report!.ratings![0].evidence,'  '+before+'\n');
+});
