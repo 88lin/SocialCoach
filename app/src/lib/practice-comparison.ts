@@ -24,7 +24,8 @@ function verifiedRatings(session:Session){
  const ratings=session.report.ratings??[],words=session.messages.filter(m=>m.role==='learner').map(m=>m.text);
  const allowed=new Set([...session.scenario.skills,...session.scenario.relatedSkills??[]]);
  return ratings.filter(r=>allowed.has(r.skill)&&ratings.filter(v=>v.skill===r.skill).length===1
-  &&Number.isInteger(r.level)&&r.level>=0&&r.level<=3&&hasQuote(r.evidence,words));
+  &&Number.isInteger(r.level)&&r.level>=0&&r.level<=3&&hasQuote(r.evidence,words))
+  .map(r=>({...r,evidence:r.evidence.trim()}));
 }
 
 /** Each row is supported by learner words in two independent, completed practices.
