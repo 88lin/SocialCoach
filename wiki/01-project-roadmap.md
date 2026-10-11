@@ -1,4 +1,4 @@
-<!-- Last verified: 2026-10-06 | Current stage: B -->
+<!-- Last verified: 2026-10-12 | Current stage: E -->
 
 # 项目路线图
 
@@ -23,7 +23,7 @@
 | # | 功能 | 状态 | 备注 |
 |---|---|---|---|
 | E1 | 最新主线可靠性复核 | ✅ 相关回归通过 | 已修档案 / 密钥 / 额度 / 输出边界复测；真机与用户效果继续跟踪 |
-| E2 | 同条件独立重练的原话对照 | ✅ 本地验收，发布核对中 | 文字 / 自定义 / 3D 共用，引文回溯与旧复盘入口，无新增模型调用 → [规格](./archive/specs/spec-practice-comparison.md) |
+| E2 | 同条件独立重练的原话对照 | ✅ 双站已发布 | 333 项核心 / 3D（含 11 项对照）、主站 9 组与国内公开嵌入页验收；真机 / 用户效果待验 → [规格](./archive/specs/spec-practice-comparison.md)、[验收](./reviews/review-2026-10-12-practice-comparison.md) |
 
 ### Stage A — 产品与语料建成
 
